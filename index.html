@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Kamu 💖</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Efek hujan hati -->
+  <div class="heart-container"></div>
+
+  <!-- Musik -->
+  <audio id="bg-music" autoplay muted loop>
+    <source src="audio/die_withsmile.mp3" type="audio/mp3" />
+  </audio>
+
+  <div class="card">
+    <h1>Hai Cantikku! 🌸</h1>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+      <img id="slide" src="image/Foto_ceweku.jpg" alt="Romantis 1" class="slide-img" />
+    </div>
+
+    <!-- Tombol Musik -->
+    <button id="playPauseBtn">🎵 Play/Pause Musik</button>
+
+    <p>I love you so much 💖💋</p>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const bgMusic = document.getElementById("bg-music");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const slideImg = document.getElementById("slide");
+
+      // Musik autoplay + kontrol tombol
+      bgMusic.play();
+      playPauseBtn.addEventListener("click", function () {
+        if (bgMusic.paused) {
+          bgMusic.muted = false;
+          bgMusic.play();
+          playPauseBtn.textContent = "⏸️ Pause Musik";
+        } else {
+          bgMusic.pause();
+          playPauseBtn.textContent = "🎵 Play Musik";
+        }
+      });
+
+      // Slideshow manual + otomatis
+      const images = [
+        "image/Foto_2.jpg",
+        "image/Foto_3.jpg",
+        "image/Foto_4.jpg",
+        "image/Foto_ceweku.jpg"
+      ];
+      let current = 0;
+
+      slideImg.addEventListener("click", function () {
+        current = (current + 1) % images.length;
+        slideImg.src = images[current];
+      });
+
+      setInterval(function () {
+        current = (current + 1) % images.length;
+        slideImg.src = images[current];
+      }, 5000);
+    });
+
+    // Animasi hujan hati 💖
+    const heartContainer = document.querySelector(".heart-container");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      heart.style.fontSize = (Math.random() * 10 + 16) + "px";
+      heartContainer.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
